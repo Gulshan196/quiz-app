@@ -1,4 +1,6 @@
-export enum Role{
-    User = 'user',
-    Admin = 'admin',
+export const CONSTANTS = {
+    Roles: {
+        User: 'user',
+        Admin: 'admin',
+    }
 }
