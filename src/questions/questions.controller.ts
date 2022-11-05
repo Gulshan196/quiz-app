@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
+import { RolesGuard } from 'src/roles.guard';
+import { CONSTANTS } from 'src/enums/role.enum';
 
 @Controller('questions')
 export class QuestionsController {

@@ -8,23 +8,27 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService
-  ) {}
- // use bcrypt
+  ) { }
+  // use bcrypt
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
-    const passwordValid = await bcrypt.compare(pass,user.password);
+    if (user) {
+      const passwordValid = await bcrypt.compare(pass, user.password);
+      if (passwordValid) {
+        return user;
+      }
+    }
+
     if (!user) {
       throw new NotAcceptableException('could not find the user');
-  }
-  if (user && passwordValid) {
-      return user;
-  }
+    }
+
     return null;
   }
 
   async login(user: any) {
-    const payload = { username: user._doc.username, sub: user._doc._id,roles: user._doc.roles };
-   console.log('user',user._doc); 
+    const payload = { username: user._doc.username, sub: user._doc._id, roles: user._doc.roles };
+    console.log('user', user._doc);
     return {
       access_token: this.jwtService.sign(payload),
     };

@@ -13,8 +13,8 @@ export class QuestionsService {
     const createdquestion = new this.userModel(createQuestionsDto);
     return createdquestion.save();
   }
-  findAll() {
-    return `This action returns all questions`;
+  async findAll() : Promise<Questions[]>{
+    return this.userModel.find().exec();
   }
 
   findOne(id: number) {

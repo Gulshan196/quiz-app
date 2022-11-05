@@ -16,7 +16,7 @@ export class Questions {
     type: string;
 
     @Prop()
-    options: Array<object>;
+    options: Array<string>;
 
     @Prop()
     correct:string;

@@ -11,9 +11,9 @@ export class CreateQuestionDto {
   type: string;
 
   @IsArray()
-  options: Array<object>;
+  options: Array<string>;
 
-  @IsObject()
+  @IsString()
   correct:string;
 
 }
