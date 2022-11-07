@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { env } from 'process';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -8,6 +9,6 @@ async function bootstrap() {
     methods: 'GET, PUT, POST, DELETE',
     allowedHeaders: 'Content-Type, Authorization',
   });
-  await app.listen(5000);
+  await app.listen(process.env.PORT || 8080);
 }
 bootstrap();
